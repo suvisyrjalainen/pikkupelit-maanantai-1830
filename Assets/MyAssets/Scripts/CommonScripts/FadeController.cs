@@ -18,7 +18,7 @@ public class FadeController : MonoBehaviour
     
     void Start()
     {
-        fadeOut();
+        
     }
 
     // Update is called once per frame
