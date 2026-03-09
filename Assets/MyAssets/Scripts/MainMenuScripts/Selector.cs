@@ -13,7 +13,7 @@ public class Selector : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        UpdateColors();
     }
 
     // Update is called once per frame
@@ -25,6 +25,7 @@ public class Selector : MonoBehaviour
                 index += 1;
                 Debug.Log(index);
             }
+            UpdateColors();
         }
 
         if(Input.GetKeyDown(KeyCode.UpArrow)){
@@ -32,7 +33,21 @@ public class Selector : MonoBehaviour
                 index -= 1;
                 Debug.Log(index);
             }
+            UpdateColors();
         }
         
     }
+
+    void UpdateColors(){
+        for(int i=0; i<items.Length; i++){
+            if(i==index){
+                items[i].color = highlightColor;
+            }
+            else{
+                items[i].color = normalColor;
+            }
+        }
+    }
+
+
 }
