@@ -37,7 +37,7 @@ public class Selector : MonoBehaviour
         }
 
         if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space)){
-            ActiveItem(index);
+            ActivateItem(index);
         }
         
     }
@@ -54,7 +54,7 @@ public class Selector : MonoBehaviour
     }
 
 
-    public void ActiveItem(int i){
+    public void ActivateItem(int i){
         if(items[i].text == "Pikkupelit"){
             Debug.Log("Siirry pikkupeleihin");
         }
@@ -67,7 +67,7 @@ public class Selector : MonoBehaviour
 
     }
 
-    public void setIndex(int i){
+    public void SetIndex(int i){
         index = i;
         UpdateColors();
     }
