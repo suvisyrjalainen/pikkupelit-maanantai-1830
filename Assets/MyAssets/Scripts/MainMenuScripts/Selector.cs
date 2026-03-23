@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Selector : MonoBehaviour
 {
@@ -7,7 +9,7 @@ public class Selector : MonoBehaviour
 
     public Color normalColor;
     public Color highlightColor;
-
+    public FadeController fade;
     private int index = 0; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,7 +21,6 @@ public class Selector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if(Input.GetKeyDown(KeyCode.DownArrow)){
             if(index < items.Length - 1){
                 index += 1;
@@ -53,13 +54,15 @@ public class Selector : MonoBehaviour
         }
     }
 
-
     public void ActivateItem(int i){
         if(items[i].text == "Pikkupelit"){
             Debug.Log("Siirry pikkupeleihin");
+         
+            StartCoroutine(ChangeToMyScene("Pikkupelit"));
         }
         else if(items[i].text == "Asetukset"){
             Debug.Log("Siirry asetuksiin");
+            StartCoroutine(ChangeToMyScene("Asetukset"));
         }
         else if(items[i].text == "Lopeta peli"){
             Debug.Log("Lopetetaan peli");
@@ -70,6 +73,13 @@ public class Selector : MonoBehaviour
     public void SetIndex(int i){
         index = i;
         UpdateColors();
+    }
+
+    private IEnumerator ChangeToMyScene(string sceneName)
+    {
+        fade.fadeIn();
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene(sceneName);
     }
 
 }
