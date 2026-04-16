@@ -66,6 +66,7 @@ public class Selector : MonoBehaviour
         }
         else if(items[i].text == "Lopeta peli"){
             Debug.Log("Lopetetaan peli");
+            StartCoroutine(QuitGame());
         }
 
     }
@@ -78,8 +79,20 @@ public class Selector : MonoBehaviour
     private IEnumerator ChangeToMyScene(string sceneName)
     {
         fade.fadeIn();
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(fade.fadeDuration);
         SceneManager.LoadScene(sceneName);
+    }
+
+    private IEnumerator QuitGame()
+    {
+        fade.fadeIn();
+        yield return new WaitForSeconds(fade.fadeDuration);
+
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 
 }
