@@ -17,6 +17,8 @@ public class ScrollGames : MonoBehaviour
 
     private int currentIndex = 0;
 
+    private bool isMoving = false;
+
     void Start()
     {
         fade.fadeOut();
@@ -44,6 +46,10 @@ public class ScrollGames : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isMoving){
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Return))
         {
             StartCoroutine(ChangeScene("Game1"));
@@ -51,13 +57,20 @@ public class ScrollGames : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.RightArrow))
         {
-            //Vaihdetaan seuraavaan peliin
-            currentIndex++;
+            if(currentIndex < levels.Length - 1)
+            {        
+                StartCoroutine(SwitchSlide(currentIndex, currentIndex + 1, false));
+                //Vaihdetaan seuraavaan peliin
+                currentIndex++;
+            }
         }
-
         if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            currentIndex--;
+            if(currentIndex > 0)
+            {          
+                StartCoroutine(SwitchSlide(currentIndex, currentIndex - 1, true));
+                currentIndex--;
+            }
         }
 
     }
@@ -67,5 +80,34 @@ public class ScrollGames : MonoBehaviour
         fade.fadeIn();
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(levelName);
+    }
+
+
+    IEnumerator SwitchSlide(int oldIndex, int newIndex, bool moveRight){
+
+        isMoving = true;
+        GameObject oldLevel = levels[oldIndex];
+        GameObject newLevel = levels[newIndex];
+
+        newLevel.SetActive(true);
+
+        Vector3 oldTarget = moveRight ? rightPos : leftPos;
+
+        Vector3 startPosForNew = moveRight ? leftPos : rightPos;
+
+        newLevel.transform.position = startPosForNew;
+
+        while(Vector3.Distance(newLevel.transform.position, centerPos) > 0.01f){
+            oldLevel.transform.position = Vector3.MoveTowards(oldLevel.transform.position, oldTarget, 10 * Time.deltaTime);
+
+            newLevel.transform.position = Vector3.MoveTowards(newLevel.transform.position, centerPos, 10 * Time.deltaTime);
+
+            yield return null;
+
+        }
+
+        isMoving = false;
+
+
     }
 }

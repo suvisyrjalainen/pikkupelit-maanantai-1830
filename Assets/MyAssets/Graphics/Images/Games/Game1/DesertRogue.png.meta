@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 781668c2f0b738741a925398822df04e
+guid: 6101fa608f6089c4d96d43f5af483548
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8986255164526453095
-    second: return-7772977_640_0
+      213: 8206707352224598685
+    second: DesertRogue_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: return-7772977_640_0
+      name: DesertRogue_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2
         y: 0
-        width: 640
-        height: 640
+        width: 16
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7616e9ef57795bc70800000000000000
-      internalID: 8986255164526453095
+      spriteID: d9a0fe81bd414e170800000000000000
+      internalID: 8206707352224598685
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      return-7772977_640_0: 8986255164526453095
+      DesertRogue_0: 8206707352224598685
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
